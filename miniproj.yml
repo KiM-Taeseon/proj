@@ -1,0 +1,35 @@
+version: '3.8'
+
+services: 
+  # nginx:
+  #  image: nginx:latest
+  #  deploy: 
+  #    replicas: 3
+  #    placement: 
+  #      constraints: [ node.role == worker ]
+  
+  visual: 
+    image: dockersamples/visualizer  
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8080:8080"
+    deploy: 
+      mode: global
+      placement: 
+        constraints: [ node.role == manager ]
+    # networks: 
+    #  - nginx_net
+
+# volumes: 
+#  nginx_vol: 
+#    driver: local
+#    driver_opts: 
+#      type: "nfs4"
+#      o: "addr=211.183.3.200,rw"
+#      device: ":/nginx"
+
+# networks: 
+#  nginx_net: 
+#    driver: overlay
+#    attachable: true    # docker container run 가능
