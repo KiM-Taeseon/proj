@@ -9,15 +9,13 @@ services:
   #      constraints: [ node.role == worker ]
   
   visual: 
-    image: dockersamples/visualizer  
-    volumes: 
-      - /var/run/docker.sock:/var/run/docker.sock
+    image: 211.183.3.200:5000/newnginx:blue
     ports:
-      - "8989:8080"
+      - "8989:80"
     deploy: 
       mode: global
       placement: 
-        constraints: [ node.role == manager ]
+        constraints: [ node.role == worker ]
     # networks: 
     #  - nginx_net
 
